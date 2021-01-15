@@ -120,7 +120,7 @@ def main():
                                                     dictionary_length)
 
     # Model testing
-    test(encoder, decoder, "Allo, Yoba, eto ti?", "data/yoba.jpg", key_1,
+    test(encoder, decoder, "Neo-Doomer", "data/doomer.jpg", key_1,
          key_2, sentence_length, dictionary_length)
 
     return
