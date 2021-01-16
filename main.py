@@ -113,8 +113,7 @@ def main():
     """
     # Model training
     neural_network.model_training(image_size, sentence_length,
-                                  dictionary_length)"""
-    """
+                                  dictionary_length)
     # Model evaluation
     neural_network.model_evaluation("data/test_set",
                                     "data/words.txt",
