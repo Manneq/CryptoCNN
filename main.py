@@ -143,7 +143,7 @@ def main():
 
     # Model testing
     test(encoder, decoder,
-         "Rabota is not a wolf. Rabota is a wolk, and wolk is wolf.",
+         "Rabota is not a wolf. Rabota is a wolk, and wolk is a wolf.",
          "data/wolk.jpg", key_1, key_2, message_length, dictionary_length)
 
     # Model testing
