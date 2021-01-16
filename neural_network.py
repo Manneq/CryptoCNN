@@ -2,7 +2,10 @@
     File 'neural_network.py' consists of methods to create.
 """
 import keras
+import numpy as np
 import data_generator
+import data_management
+import onehot
 
 
 def model_creation(image_size, message_length, dictionary_length):
@@ -93,6 +96,47 @@ def model_training(image_size, message_length, dictionary_length):
                                 save_weights_only=True),
                             keras.callbacks.TensorBoard(
                                 log_dir="training_logs")])
+
+    return
+
+
+def model_evaluation(path_to_image_folder, path_to_words_set,
+                     image_size, message_length, dictionary_length):
+    """
+        Method to evaluate model.
+        param:
+            1. path_to_image_folder - string path to image folder
+            2. path_to_words_set - string path to the message file
+            3. image_size - size of the image
+            4. message_length - maximum length of the message
+            5. dictionary_length - size of the dictionary
+    """
+    # Data preparation
+    images = data_management.images_names_loading(path_to_image_folder,
+                                                  message_length)
+    input_messages = \
+        data_management.messages_from_text_loading(path_to_words_set,
+                                                   message_length,
+                                                   len(images))
+
+    output_messages = np.zeros((len(input_messages), message_length,
+                                dictionary_length))
+
+    for i in range(len(input_messages)):
+        output_messages[i] = onehot.onehot_encoder(input_messages[i],
+                                                   dictionary_length)
+
+    # Model creation
+    model, encoder, decoder = \
+        model_creation(image_size, message_length, dictionary_length)
+
+    # Model evaluation
+    metrics = model.evaluate(x=[images, input_messages],
+                             y=[images, output_messages],
+                             batch_size=64)
+
+    print(model.metrics_names)
+    print(metrics)
 
     return
 

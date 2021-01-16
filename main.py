@@ -101,10 +101,10 @@ def main():
     """
         Main function.
     """
-    # Sentence length
-    sentence_length = 100
+    # Message length
+    message_length = 100
     # Image size
-    image_size = (sentence_length, sentence_length, 3)
+    image_size = (message_length, message_length, 3)
     # Dictionary length (Ascii table)
     dictionary_length = 128
     # Keys for Affine cypher
@@ -114,10 +114,17 @@ def main():
     # Model training
     neural_network.model_training(image_size, sentence_length,
                                   dictionary_length)"""
+    """
+    # Model evaluation
+    neural_network.model_evaluation("data/test_set",
+                                    "data/words.txt",
+                                    image_size,
+                                    message_length,
+                                    dictionary_length)"""
 
     # Model loading
     model, encoder, decoder = neural_network.model_loading(image_size,
-                                                           sentence_length,
+                                                           message_length,
                                                            dictionary_length)
 
     # Models plotting
@@ -127,7 +134,8 @@ def main():
 
     # Model testing
     test(encoder, decoder, "Neo-Doomer", "data/doomer.jpg", key_1,
-         key_2, sentence_length, dictionary_length)
+         key_2, message_length, dictionary_length)
+
 
     return
 

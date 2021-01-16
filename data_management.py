@@ -3,6 +3,7 @@
 """
 import numpy as np
 import cv2
+import os
 import affine
 import ascii
 import onehot
@@ -81,3 +82,36 @@ def message_decryption_and_showing(message, key_1, key_2,
                                    dictionary_length))
 
     return
+
+
+def messages_from_text_loading(path_to_file, message_length, messages_number):
+    """
+        Method to load messages from text file (usable only for evaluation).
+        param:
+            1. path_to_file - string path to text file
+            2. message_length - maximum length of message
+            3. messages_number - number of messages to import
+        return:
+            messages - list of ascii encoded messages
+    """
+    file = open(path_to_file, 'r')
+
+    messages = [ascii.ascii_encoder(message.split("\n")[0], message_length)[0]
+                for message in file.readlines()[:messages_number]]
+
+    file.close()
+
+    return messages
+
+
+def images_names_loading(path_to_folder,
+                         message_length):
+    """
+        Method to load list of images (usable only for evaluation).
+        param:
+            path_to_folder - string path to folder with images
+        return:
+            List of images
+    """
+    return [image_loading(path_to_folder + "/" + file, message_length)[0]
+            for file in os.listdir(path_to_folder)]

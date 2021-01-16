@@ -42,25 +42,26 @@ def training_data_generator(image_size, message_length, dictionary_length,
     """
     while True:
         # Input data initialization
-        x_image = np.zeros((batch_size, image_size[0], image_size[1],
-                            image_size[2]))
-        x_sentence = np.zeros((batch_size, message_length))
+        input_images = np.zeros((batch_size, image_size[0], image_size[1],
+                                 image_size[2]))
+        input_messages = np.zeros((batch_size, message_length))
         # Output data initialization
-        y_image = np.zeros((batch_size, image_size[0], image_size[1],
-                            image_size[2]))
-        y_sentence = np.zeros((batch_size, message_length,
-                               dictionary_length))
+        output_images = np.zeros((batch_size, image_size[0], image_size[1],
+                                 image_size[2]))
+        output_messages = np.zeros((batch_size, message_length,
+                                   dictionary_length))
 
         for i in range(batch_size):
             # Input and output data generation
             image = image_generator(image_size)
-            sentence = message_generator(message_length, dictionary_length)
-            sentence_onehot = onehot.onehot_encoder(sentence,
-                                                    dictionary_length)
+            message = message_generator(message_length, dictionary_length)
+            message_onehot = onehot.onehot_encoder(message,
+                                                   dictionary_length)
 
-            x_image[i] = image
-            x_sentence[i] = sentence
-            y_image[i] = image
-            y_sentence[i] = sentence_onehot
+            input_images[i] = image
+            input_messages[i] = message
+            output_images[i] = image
+            output_messages[i] = message_onehot
 
-        yield [[x_image, x_sentence], [y_image, y_sentence]]
+        yield [[input_images, input_messages],
+               [output_images, output_messages]]

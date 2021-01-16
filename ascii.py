@@ -19,7 +19,7 @@ def ascii_encoder(message, message_length):
     for i, symbol in enumerate(message.encode("ascii")):
         ascii_message[0, i] = symbol
 
-    return ascii_message
+    return ascii_message.astype(int)
 
 
 def ascii_decoder(ascii_message):
