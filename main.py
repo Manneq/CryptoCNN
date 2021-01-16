@@ -136,7 +136,6 @@ def main():
     test(encoder, decoder, "Neo-Doomer", "data/doomer.jpg", key_1,
          key_2, message_length, dictionary_length)
 
-
     return
 
 
