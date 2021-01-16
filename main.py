@@ -133,7 +133,30 @@ def main():
     plotting.model_plotting(decoder, "plots/decoder_model.png")
 
     # Model testing
+    test(encoder, decoder, "License agreement of the private company",
+         "data/maga.jpg", key_1,
+         key_2, message_length, dictionary_length)
+
+    # Model testing
+    test(encoder, decoder, "He trained? Drop the accuracy.",
+         "data/bogdanoff.jpg", key_1,
+         key_2, message_length, dictionary_length)
+
+    # Model testing
     test(encoder, decoder, "Neo-Doomer", "data/doomer.jpg", key_1,
+         key_2, message_length, dictionary_length)
+
+    # Model testing
+    test(encoder, decoder,
+         "Rabota is not a wolk. Rabota is work, and wolk is wolf.",
+         "data/wolk.jpg", key_1, key_2, message_length, dictionary_length)
+
+    # Model testing
+    test(encoder, decoder, "Banned...", "data/simp.jpg", key_1,
+         key_2, message_length, dictionary_length)
+
+    # Model testing
+    test(encoder, decoder, "How does it work?", "data/da.jpg", key_1,
          key_2, message_length, dictionary_length)
 
     return
