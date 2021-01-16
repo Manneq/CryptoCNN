@@ -159,6 +159,11 @@ def main():
          "data/awoo.jpg", key_1,
          key_2, message_length, dictionary_length)
 
+    # Model testing
+    test(encoder, decoder, "I'm presenting the project",
+         "data/pepega.jpg", key_1,
+         key_2, message_length, dictionary_length)
+
     return
 
 
