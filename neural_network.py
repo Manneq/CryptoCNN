@@ -31,8 +31,7 @@ def model_creation(image_size, message_length, dictionary_length):
         keras.layers.Conv2D(20, 1, activation='tanh')(image_input)
     concatenation = keras.layers.Concatenate(axis=-1)(
         [sentence_embedding, image_convolutional])
-    image_output = keras.layers.Conv2D(3, 1, activation='tanh',
-                                       name='encoder')(concatenation)
+    image_output = keras.layers.Conv2D(3, 1, activation='tanh')(concatenation)
     encoder_model = keras.models.Model(inputs=[image_input, sentence_input],
                                        outputs=[image_output], name="encoder")
 
@@ -116,7 +115,7 @@ def model_loading(image_size, message_length, dictionary_length):
     # Weights loading
     model.load_weights("weights.h5")
 
-    return encoder, decoder
+    return model, encoder, decoder
 
 
 def model_encoding(encoder, image, message):

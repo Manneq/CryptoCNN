@@ -3,6 +3,7 @@
 """
 import data_management
 import neural_network
+import plotting
 
 
 def encryption(encoder, message, path_to_image, key_1, key_2, message_length,
@@ -114,10 +115,15 @@ def main():
     neural_network.model_training(image_size, sentence_length,
                                   dictionary_length)"""
 
-    # Encoder and decoder loading
-    encoder, decoder = neural_network.model_loading(image_size,
-                                                    sentence_length,
-                                                    dictionary_length)
+    # Model loading
+    model, encoder, decoder = neural_network.model_loading(image_size,
+                                                           sentence_length,
+                                                           dictionary_length)
+
+    # Models plotting
+    plotting.model_plotting(model, "plots/full_model.png")
+    plotting.model_plotting(encoder, "plots/encoder_model.png")
+    plotting.model_plotting(decoder, "plots/decoder_model.png")
 
     # Model testing
     test(encoder, decoder, "Neo-Doomer", "data/doomer.jpg", key_1,
